@@ -19,6 +19,12 @@ Write-Output "Installing winget"
 Start-Process c:\temp\winget.appxbundle
 Read-Host "Press any key to continue when winget installer has compeleted, this will cause severavl restarts"
 
+## Set Folder options
+$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
+Set-ItemProperty $key Hidden 1
+Set-ItemProperty $key HideFileExt 0
+Stop-Process -processname explorer
+
 
 Write-Output "Installing and setting up WSL 2"
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
@@ -93,8 +99,3 @@ winget install SlackTechnologies.Slack
 winget install Spotify.Spotify
 winget install WiresharkFoundation.WiresharkFoundation
 
-## Set Folder options
-$key = 'HKCU:\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced'
-Set-ItemProperty $key Hidden 1
-Set-ItemProperty $key HideFileExt 0
-Stop-Process -processname explorer
