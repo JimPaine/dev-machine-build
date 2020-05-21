@@ -45,7 +45,7 @@ Write-Output "Installing winget"
 Start-Process c:\temp\winget.appxbundle
 Read-Host "Press any key to continue when winget installer has compeleted, this will cause severavl restarts"
 
-Unregister-ScheduledJob -Name NewDevMachineSetup
-Register-ScheduledJob -Name NewDevMachineSetup -Trigger (New-JobTrigger -AtLogOn) -ScriptBlock { Import-Module PSWorkflow; Get-Job -Name DevMachineSetup -State Suspended | Resume-Job}
+$RunOnceKey = "HKLM:\Software\Microsoft\Windows\CurrentVersion\RunOnce"
+Set-ItemProperty $RunOnceKey "NextRun" ('C:\Windows\System32\WindowsPowerShell\v1.0\Powershell.exe -executionPolicy Unrestricted -ArgumentList "Import-Module PSWorkflow; Get-Job -Name DevMachineSetup -State Suspended | Resume-Job"')
 
 Install-DevMachine -JobName DevMachineSetup
