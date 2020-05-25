@@ -7,3 +7,6 @@ Start-Process -FilePath $ubuntuApp
 
 Write-Host "Press any key once you have setup WSL distro"
 Read-Host
+
+wsl --set-default Ubuntu-18.04
+wsl --exec sudo ./wsl2.sh
