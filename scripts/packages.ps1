@@ -3,16 +3,22 @@ winget install Git.Git
 winget install Github.cli
 winget install Microsoft.AzureCli
 winget install Microsoft.AzureCosmosEmulator
+winget install Microsoft.dotnet
+winget install Microsoft.dotnetPreview
 winget install Microsoft.EdgeDev
-winget install Microsoft.StorageEmulator
+winget install Microsoft.OneDrive
+winget install Microsoft.PowerShell
 winget install Microsoft.PowerToys
+winget install Microsoft.StorageEmulator
 winget install Microsoft.Teams
-
-winget install Microsoft.VisualStudio.Enterprise    
-
+winget install Microsoft.VisualStudio.Enterprise  
 winget install Microsoft.WindowsTerminal
-winget install ".NET Core"
+
+winget install NordVPN.NordVPN
 winget install Postman.Postman
+winget install RARLab.WinRAR
+winget install Rufus.Rufus
+winget install Signal.Signal
 winget install SlackTechnologies.Slack
 winget install Spotify.Spotify
 winget install Telerik.Fiddler
