@@ -39,23 +39,19 @@ wget https://packages.microsoft.com/config/ubuntu/$distroVersion/packages-micros
 dpkg -i packages-microsoft-prod.deb
 
 apt update
-apt install apt-transport-https -y
-apt update
-apt install dotnet-sdk-3.1 -y
+apt install -y apt-transport-https dotnet-sdk-3.1
 
 ## Install kubectl
-apt update && sudo apt install -y apt-transport-https gnupg2
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee -a /etc/apt/sources.list.d/kubernetes.list
-apt update
-apt install -y kubectl
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+mv ./kubectl /usr/local/bin/kubectl
 
 ## Install terraform
 apt install unzip
-wget https://releases.hashicorp.com/terraform/0.12.25/terraform_0.12.25_linux_amd64.zip
-unzip terraform_0.12.25_linux_amd64.zip
+wget https://releases.hashicorp.com/terraform/0.13.0/terraform_0.13.0_linux_amd64.zip
+unzip terraform_0.13.0_linux_amd64.zip
 mv ./terraform /usr/local/bin/terraform
-rm terraform_0.12.25_linux_amd64.zip
+rm terraform_0.13.0_linux_amd64.zip
 
 ## Install func cli
 apt update -y
