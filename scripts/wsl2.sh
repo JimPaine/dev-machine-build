@@ -6,8 +6,6 @@ service ntp restart
 ## Install ZSH
 apt update; apt -y install zsh wget curl git vim sed 
 chsh -s $(which zsh)
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc
-sed -i 's/prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"/prompt_segment black default "%(!.%{%F{yellow}%}.)%n"/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
 
 ## Install Cascadia fonts
 wget https://github.com/microsoft/cascadia-code/releases/download/v1911.21/CascadiaMonoPL.ttf
@@ -22,15 +20,15 @@ sed -i 's/FONTFACE="Fixed"/FONTFACE="Cascadia Mono PL"/g' /etc/default/console-s
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 apt autoremove -y ; apt clean -y ; rm -rf /var/lib/apt/lists/*
 
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="agnoster"/g' ~/.zshrc
+sed -i 's/prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"/prompt_segment black default "%(!.%{%F{yellow}%}.)%n"/g' ~/.oh-my-zsh/themes/agnoster.zsh-theme
+
 ## Install Azure Cli
-apt install ca-certificates curl apt-transport-https lsb-release gnupg
-curl -sL https://packages.microsoft.com/keys/microsoft.asc |
-    gpg --dearmor |
-    tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
+apt install -y ca-certificates curl apt-transport-https lsb-release gnupg
+curl -sL https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor | tee /etc/apt/trusted.gpg.d/microsoft.asc.gpg > /dev/null
 
 AZ_REPO=$(lsb_release -cs)
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" |
-    tee /etc/apt/sources.list.d/azure-cli.list
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | tee /etc/apt/sources.list.d/azure-cli.list
 
 apt update
 apt install azure-cli -y
@@ -65,7 +63,4 @@ apt install azure-functions-core-tools-3 -y
 
 ## Install GitHub cli
 wget https://github.com/cli/cli/releases/download/v0.8.0/gh_0.8.0_linux_amd64.deb
-apt install ./gh_*_linux_amd64.deb
-
-## Install everything else
-apt install git
+apt install -y ./gh_*_linux_amd64.deb
