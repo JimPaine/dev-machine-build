@@ -1,6 +1,7 @@
 winget install Microsoft.VisualStudioCode
 
 Write-Output "Installing VSCode extensions"
+code --install-extension "visualstudioexptteam.vscodeintellicode"
 code --install-extension azuredevspaces.azds
 code --install-extension eamodio.gitlens
 code --install-extension felixfbecker.php-debug
